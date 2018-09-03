@@ -104,7 +104,12 @@
       }
       
       this.initializeStimulsoft($translate.use(), json);
-      var options = null;
+      var h = parseInt($(window).height());
+      
+      var options = new Stimulsoft.Viewer.StiViewerOptions();
+      options.appearance.scrollbarsMode = true;
+      options.height = (h - 200) + "px";
+      
       var viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
       var report = new Stimulsoft.Report.StiReport();
       report.load(json);

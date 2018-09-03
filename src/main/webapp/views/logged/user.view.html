@@ -3,9 +3,9 @@
 <!-- div row para pesquisa -->
 <!--<div class="row">-->
 
-<button class="btn btn-default component-holder" type="submit" ng-click="cronapi.client('js.blockly.Relatorio.Executar').run()" xattr-size="" xattr-fullsize="" xattr-theme="btn-default" data-component="crn-button" id="crn-button-851058"><i class="glyphicon glyphicon-home"></i> <span>Button </span></button><datasource data-component="crn-datasource" filter="" name="User" entity="app.User" keys="id" rows-per-page="100" class=""></datasource>
+<button class="btn btn-default component-holder" type="submit" ng-click="cronapi.client('js.blockly.Relatorio.Executar').run()" xattr-size="" xattr-fullsize="" xattr-theme="btn-default" data-component="crn-button" id="crn-button-851058"><i class="glyphicon glyphicon-home"></i> <span>Relatório novo</span></button><datasource data-component="crn-datasource" filter="" name="User" entity="app.User" keys="id" rows-per-page="100" class=""></datasource>
 
-    <div ng-hide="User.inserting || User.editing" data-component="crn-datasource-filter" id="crn-datasource-filter-general" class="">
+    <button class="btn btn-default component-holder" type="submit" ng-click="cronapi.client('js.blockly.RelatorioAntigo.Executar').run()" xattr-size="" xattr-fullsize="" xattr-theme="btn-default" data-component="crn-button" id="crn-button-473027"><i class="glyphicon glyphicon-home"></i> <span>Relatório antigo</span></button><div ng-hide="User.inserting || User.editing" data-component="crn-datasource-filter" id="crn-datasource-filter-general" class="">
         <div class="form-group">
             <label for="textinput-filter" class="">{{"template.crud.search" | translate}}</label>
             <input type="text" ng-model="vars.search" cronapp-filter="email;" cronapp-filter-operator="" cronapp-filter-caseinsensitive="false" cronapp-filter-autopost="true" crn-datasource="User" class="form-control" value="" placeholder="{{'template.crud.search' | translate}}">
