@@ -1,0 +1,701 @@
+{
+  "auth": {
+    "customId": "auth",
+    "queryName": "Autenticar",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": "select o from User o where o.login \u003d :login",
+    "queryParamsValues": [
+      {
+        "fieldName": "login",
+        "fieldValue": ""
+      }
+    ],
+    "verbs": {
+      "GET": false,
+      "POST": false,
+      "PUT": false,
+      "DELETE": false
+    },
+    "events": {},
+    "defaultValues": {},
+    "security": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/query/auth/"
+  },
+  "roles": {
+    "customId": "roles",
+    "queryName": "Obter Autorização",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "Role",
+    "entityFullName": "app.entity.Role",
+    "query": "select o.id from Role o where o.user.login \u003d :login",
+    "queryParamsValues": [
+      {
+        "fieldName": "login",
+        "fieldValue": ""
+      }
+    ],
+    "verbs": {
+      "GET": false,
+      "POST": false,
+      "PUT": false,
+      "DELETE": false,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/query/roles/"
+  },
+  "tenant": {
+    "customId": "tenant",
+    "queryName": "Obter Id de Multi-inquilino",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": "select u.company.id from User u where u.login \u003d :login",
+    "queryParamsValues": [
+      {
+        "fieldName": "login",
+        "fieldValue": ""
+      }
+    ],
+    "verbs": {
+      "GET": false,
+      "POST": false,
+      "PUT": false,
+      "DELETE": false
+    },
+    "events": {},
+    "defaultValues": {},
+    "security": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/query/tenant/"
+  },
+  "query917143": {
+    "customId": "query917143",
+    "queryName": "Consulta via Bloco",
+    "screen": "",
+    "sourceType": "blockly",
+    "blockly": {
+      "blocklyClass": "blockly.Teste",
+      "blocklyMethod": "Executar",
+      "blocklyLanguage": "java",
+      "blocklyJson": {
+        "namespace": "blockly.Teste",
+        "classNameNew": "Teste",
+        "classNameOld": "Teste",
+        "sourcePath": "src/main/java/blockly/Teste.blockly",
+        "language": "java",
+        "class": "blockly.Teste",
+        "methods": [
+          {
+            "name": "Executar",
+            "hasReturn": "true",
+            "params": [
+              "Dados"
+            ]
+          }
+        ]
+      },
+      "blocklyFunctionCall": "cronapi.util.makeCallServerBlocklyAsync(\u0027blockly.Teste:Executar\u0027, null, null)",
+      "blocklyGETMethod": "Executar",
+      "blocklyPOSTMethod": "Executar",
+      "blocklyPUTMethod": "Executar",
+      "blocklyDELETEMethod": "Executar",
+      "blocklyFILTERMethod": "Executar"
+    },
+    "query": "",
+    "queryParamsValues": [
+      {
+        "fieldName": "Dados",
+        "fieldValue": ""
+      }
+    ],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {
+      "id": {
+        "key": false,
+        "nullable": true,
+        "type": "String"
+      },
+      "email": {
+        "key": false,
+        "nullable": true,
+        "type": "String"
+      }
+    },
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/query/query917143/"
+  },
+  "query198465": {
+    "customId": "query198465",
+    "queryName": "Nova consulta User",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query198465/"
+  },
+  "query774084": {
+    "customId": "query774084",
+    "queryName": "Nova consulta Role",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "Role",
+    "entityFullName": "app.entity.Role",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "Role",
+          "alias": "r",
+          "namespace": "app.entity.Role"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "r"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query774084/"
+  },
+  "query191503": {
+    "customId": "query191503",
+    "queryName": "Role Role",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "Role",
+    "entityFullName": "app.entity.Role",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "Role",
+          "alias": "r",
+          "namespace": "app.entity.Role"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "r"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query191503/"
+  },
+  "query548854": {
+    "customId": "query548854",
+    "queryName": "Romano USER",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query548854/"
+  },
+  "query174375": {
+    "customId": "query174375",
+    "queryName": "DELETE ME!",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query174375/"
+  },
+  "query205459": {
+    "customId": "query205459",
+    "queryName": "DELETE ME2",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query205459/"
+  },
+  "query623445": {
+    "customId": "query623445",
+    "queryName": "MISERE",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query623445/"
+  },
+  "query55686": {
+    "customId": "query55686",
+    "queryName": "ME CURTIDO",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query55686/"
+  },
+  "query614376": {
+    "customId": "query614376",
+    "queryName": "QUE ONDA EH ESSA MERMAO",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query614376/"
+  },
+  "query589784": {
+    "customId": "query589784",
+    "queryName": "USUARIO DANADO",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query589784/"
+  },
+  "query905323": {
+    "customId": "query905323",
+    "queryName": "Ok User",
+    "screen": "",
+    "sourceType": "entityFullName",
+    "entitySimpleName": "User",
+    "entityFullName": "app.entity.User",
+    "query": {
+      "isValid": true,
+      "rulesEntity": [
+        {
+          "entity": "User",
+          "alias": "u",
+          "namespace": "app.entity.User"
+        }
+      ],
+      "rulesSelect": [
+        {
+          "func": "get",
+          "field": "u"
+        }
+      ],
+      "rulesGroupBy": [],
+      "rulesHaving": [],
+      "rulesOrderBy": [],
+      "rules": {
+        "condition": "AND",
+        "not": false,
+        "valid": true,
+        "rules": []
+      }
+    },
+    "queryParamsValues": [],
+    "verbs": {
+      "GET": true,
+      "POST": true,
+      "PUT": true,
+      "DELETE": true,
+      "FILTER": true
+    },
+    "events": {},
+    "defaultValues": {},
+    "defaultValuesProperties": {},
+    "security": {},
+    "calcFields": {},
+    "calcFieldsSecurity": {},
+    "calcFieldsProperties": {},
+    "errorHandles": {},
+    "serviceUrl": "api/cronapi/odata/v2/query905323/"
+  }
+}

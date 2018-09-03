@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><blockly formTarget="" resourceType="JS" ruleDescription="Relatorio" ruleName="Relatorio" ruleSynchronous="false" ruleTimeout="" ruleType="I">
+  <metadata scale="1" scrollx="356.9999999999998" scrolly="-2.2737367544323206e-13" target="Anb:u5+^,0vLkL9QIqn5"/>
+  <block colour="#995ba5" id="Anb:u5+^,0vLkL9QIqn5" origintype="procedures_defreturn" output="false" tooltip="Cria uma função que possui um valor de retorno." type="procedures_defreturn" x="-350" y="130">
+    <field name="NAME">Executar</field>
+    <comment h="80" pinned="false" w="160">Relatorio</comment>
+    <statement name="STACK">
+      <block colour="#487f7f" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="#*i]:gRIE::^El3EO2~{" multilayer="true" namespace="cronapi.util.openReport" origintype="procedures_openreport_callnoreturn" output="false" returntype="ObjectType.VOID" tooltip="%3Cdiv%20class=%22name%22%3E%3Cstrong%3ENome:%3C/strong%3E%3Cdiv%3EAbrir%20Relat%C3%B3rio%3C/div%3E%3C/div%3E%3Cdiv%20class=%22description%22%3E%3Cstrong%3EDescri%C3%A7%C3%A3o:%3C/strong%3E%3Cdiv%3EFun%C3%A7%C3%A3o%20responsavel%20por%20abrir%20um%20relat%C3%B3rio.%3C/div%3E%3C/div%3E%3Cdiv%20class=%22params%22%3E%3Cstrong%3EParam%C3%AAtro:%3C/strong%3E%3Cdiv%3E%3Cspan%3E%20-%20Relat%C3%B3rio%20:%20Texto%3C/span%3E%3Cbr%3E%3C/div%3E%3C/div%3E%3Cdiv%20class=%22link%22%3E%3Cstrong%3EAjuda:%3C/strong%3E%3Cdiv%20class=%22tooltip-link%22%3E%3Ca%20target=%22_blank%22%20href=%22https://docs.cronapp.io/display/CRON2/cronapi.util.openReport%22%3Ehttps://docs.cronapp.io/display/CRON2/cronapi.util.openReport%3C/a%3E%3C/div%3E%3C/div%3E" type="procedures_openreport_callnoreturn">
+        <mutation name="{{cronapi.util.openReport}}" return-raw-type="undefined">
+          <arg cronapi-raw-type="undefined" cronapi-type="ObjectType.STRING" name="Relatório"/>
+        </mutation>
+        <value name="ARG0">
+          <block colour="#487f7f" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="~ovdI[ZeNltUVCFnKu(%" origintype="util_report_list" output="true" type="util_report_list">
+            <mutation>
+              <arg name="reports/relatorioTeste.jrxml" value="reports/relatorioTeste.jrxml"/>
+            </mutation>
+            <field name="SELECT">reports/relatorioTeste.jrxml</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+</blockly>

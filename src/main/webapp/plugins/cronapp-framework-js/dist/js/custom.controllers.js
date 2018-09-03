@@ -1,0 +1,1 @@
+app.controller("AfterLoginController",["$scope",function(o){}]),app.controller("AfterHomeController",["$scope",function(o){}]),app.controller("AfterPageController",["$scope",function(o){}]);

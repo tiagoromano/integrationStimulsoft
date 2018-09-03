@@ -1,0 +1,32 @@
+{
+  "name": "cronapi-js",
+  "version": "1.23.0",
+  "description": "Public library for CronApp's users",
+  "main": "cronapi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technecloud/cronapi-js.git"
+  },
+  "author": "Arthemus Cicotti Moreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/technecloud/cronapi-js/issues"
+  },
+  "homepage": "https://github.com/technecloud/cronapi-js#readme",
+  "keywords": [
+    "cronapi",
+    "cronapp",
+    "javascript"
+  ],
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8"
+  }
+}

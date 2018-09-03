@@ -1,0 +1,204 @@
+<h3>User</h3>
+
+<!-- div row para pesquisa -->
+<!--<div class="row">-->
+
+<button class="btn btn-default component-holder" type="submit" ng-click="cronapi.client('js.blockly.Relatorio.Executar').run()" xattr-size="" xattr-fullsize="" xattr-theme="btn-default" data-component="crn-button" id="crn-button-851058"><i class="glyphicon glyphicon-home"></i> <span>Button </span></button><datasource data-component="crn-datasource" filter="" name="User" entity="app.User" keys="id" rows-per-page="100" class=""></datasource>
+
+    <div ng-hide="User.inserting || User.editing" data-component="crn-datasource-filter" id="crn-datasource-filter-general" class="">
+        <div class="form-group">
+            <label for="textinput-filter" class="">{{"template.crud.search" | translate}}</label>
+            <input type="text" ng-model="vars.search" cronapp-filter="email;" cronapp-filter-operator="" cronapp-filter-caseinsensitive="false" cronapp-filter-autopost="true" crn-datasource="User" class="form-control" value="" placeholder="{{'template.crud.search' | translate}}">
+        </div>
+    </div>
+
+<div data-component="crn-button" id="crn-button-564202" class="">
+    <button class="btn btn-primary" type="submit" onclick="" data-component="crn-button" ng-click="User.startInserting()" ng-hide="User.inserting || User.editing"><i class="fa fa-user"></i> <span class="">{{"template.crud.new" | translate}}</span></button>
+</div>
+<!-- fim div row para pesquisa -->
+<!--</div>-->
+
+<div class="component-holder" data-component="crn-grid" id="crn-grid-User">
+    <div crn-datasource="User" class="" ng-hide="User.editing || User.inserting">
+        <table class="table  table-bordered table-hover table-striped">
+            <thead>
+            <tr class="table-header">
+                <th class="">
+                    <div class="">Email</div>
+                </th>
+                <th class="">
+                    <div class="">Nome</div>
+                </th>
+                <th class="">
+                    <div class="">Login</div>
+                </th>
+                <th class="">
+                    <div class="">{{"template.crud.actions" | translate}}</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-content" ng-repeat="rowData in datasource.data">
+                <td class="">
+                    <div class="">
+							{{rowData.email  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+							{{rowData.name  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+							{{rowData.login  }}
+                    </div>
+                </td>
+                <td class="">
+                    <div class="">
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.startEditing(rowData)"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-default btn-sm" data-component="crn-button" type="submit" ng-click="datasource.remove(rowData)"><i class="fa fa-times"></i></button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-footer-controls">
+            <button class="btn btn-default btn-block btn-clicked" data-component="crn-button" ng-show="datasource.hasNextPage()" ng-click="datasource.nextPage()">{{"template.crud.load_more" | translate}}...</button>
+        </div>
+    </div>
+</div>
+<div data-component="crn-form" id="crn-form-form-User">
+    <div class="form" ng-show="User.editing || User.inserting">
+        <form crn-datasource="User" class="">
+            <div class="tool-bar" ng-hide="datasource.editing || datasource.inserting">
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.startInserting()"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.startEditing()"><i class="glyphicon glyphicon-edit"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasPrevious()" ng-click="datasource.previous()"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                <button class="btn btn-primary" data-component="crn-button" ng-click="datasource.remove()"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+            <div class="active-bar" ng-hide="!datasource.editing &amp;&amp; !datasource.inserting">
+                <button class="btn btn-success" data-component="crn-button" ng-click="datasource.post()"><i class="glyphicon glyphicon-ok"></i></button>
+                <button class="btn btn-danger" data-component="crn-button" ng-click="datasource.cancel()"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>
+            <br>
+            <fieldset ng-disabled="!datasource.editing &amp;&amp; !datasource.inserting">
+				
+
+                <div data-component="crn-textinput" id="crn-textinput-email" class="">
+                    <div class="form-group">
+                        <label for="textinput-email" class="">Email</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="text" ng-model="User.active.email" class="form-control" id="textinput-email" placeholder="Email" mask="" mask-placeholder="" ng-required="false">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+				
+
+                <div data-component="crn-textinput" id="crn-textinput-name" class="">
+                    <div class="form-group">
+                        <label for="textinput-name" class="">Nome</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="text" ng-model="User.active.name" class="form-control" id="textinput-name" placeholder="Nome" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+				
+
+                <div data-component="crn-textinput" id="crn-textinput-login" class="">
+                    <div class="form-group">
+                        <label for="textinput-login" class="">Login</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="text" ng-model="User.active.login" class="form-control" id="textinput-login" placeholder="Login" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+				
+
+                <div data-component="crn-textinput" id="crn-textinput-picture" class="">
+                    <div class="form-group">
+                        <label for="textinput-picture" class="">Imagem</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="text" ng-model="User.active.picture" class="form-control" id="textinput-picture" placeholder="Imagem" mask="" mask-placeholder="" ng-required="false">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+				
+
+                <div data-component="crn-textinput" id="crn-textinput-password" class="">
+                    <div class="form-group">
+                        <label for="textinput-password" class="">Senha</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="password" ng-model="User.active.password" class="form-control" id="textinput-password" placeholder="Senha" mask="" mask-placeholder="" ng-required="true">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+				
+
+                <div data-component="crn-textinput" id="crn-textinput-theme" class="">
+                    <div class="form-group">
+                        <label for="textinput-theme" class="">Tema</label>
+ <!-- else for if !model.hasCronappFramework() -->
+                                <input type="text" ng-model="User.active.theme" class="form-control" id="textinput-theme" placeholder="Tema" mask="" mask-placeholder="" ng-required="false">
+                         <!-- end if !model.hasCronappFramework() -->
+                    </div>
+                </div>
+                <!-- NtoN  -->
+                <!-- NtoN  end-->
+            </fieldset>
+        </form>
+        <form>
+            <fieldset>
+                <!-- OneToN -->
+                <!--query filter 1toN -->
+                
+				<!-- query filter 1toN end-->
+				<datasource data-component="crn-datasource" filter="" name="RoleGrid" entity="app.Role" keys="id" dependent-lazy-post="User" rows-per-page="100" parameters="user={{User.active.id|raw}}"></datasource>
+				<!-- teste -->
+				<h3 class="lead component-holder" data-component="crn-subtitle">Role </h3>				
+				<div class="component-holder ng-binding ng-scope" data-component="crn-cron-grid" id="crn-grid-RoleGrid">
+					<cron-grid options="{&quot;dataSourceScreen&quot;:{&quot;name&quot;:&quot;RoleGrid&quot;,&quot;entity&quot;:&quot;app.Role&quot;,&quot;entityDataSource&quot;:{&quot;id&quot;:&quot;app.Role&quot;,&quot;customId&quot;:&quot;Role&quot;,&quot;name&quot;:&quot;RoleGrid&quot;,&quot;customQueryName&quot;:&quot;app.Role&quot;,&quot;paramValues&quot;:[],&quot;entityFullName&quot;:&quot;app.entity.Role&quot;,&quot;schemaFields&quot;:[{&quot;name&quot;:&quot;id&quot;,&quot;type&quot;:&quot;String&quot;,&quot;nullable&quot;:false,&quot;key&quot;:true},{&quot;name&quot;:&quot;user&quot;,&quot;type&quot;:&quot;String&quot;,&quot;nullable&quot;:false,&quot;key&quot;:true},{&quot;name&quot;:&quot;user_email&quot;,&quot;type&quot;:&quot;String&quot;,&quot;nullable&quot;:false,&quot;key&quot;:false}],&quot;type&quot;:&quot;entity&quot;},&quot;schema&quot;:[{&quot;name&quot;:&quot;id&quot;,&quot;type&quot;:&quot;String&quot;,&quot;nullable&quot;:false,&quot;key&quot;:true},{&quot;name&quot;:&quot;user&quot;,&quot;type&quot;:&quot;String&quot;,&quot;nullable&quot;:false,&quot;key&quot;:true},{&quot;name&quot;:&quot;user_email&quot;,&quot;type&quot;:&quot;String&quot;,&quot;nullable&quot;:false,&quot;key&quot;:false}],&quot;id&quot;:&quot;app.Role&quot;},&quot;allowPaging&quot;:true,&quot;allowSorting&quot;:true,&quot;allowGrouping&quot;:true,&quot;allowSelectionTotalPageToShow&quot;:true,&quot;allowRefreshGrid&quot;:true,&quot;allowSelectionRow&quot;:true,&quot;editable&quot;:&quot;popupCustom&quot;,&quot;popupInsert&quot;:&quot;modalRoleGrid&quot;,&quot;popupEdit&quot;:&quot;modalRoleGrid&quot;,&quot;columns&quot;:[{&quot;dataType&quot;:&quot;Database&quot;,&quot;field&quot;:&quot;id&quot;,&quot;headerText&quot;:&quot;Id&quot;,&quot;type&quot;:&quot;string&quot;,&quot;sortable&quot;:true,&quot;filterable&quot;:true,&quot;format&quot;:&quot;&quot;,&quot;visible&quot;:true,&quot;linkParentType&quot;:&quot;screen&quot;,&quot;linkParentLoadIfEmpty&quot;:false,&quot;required&quot;:false,&quot;inputType&quot;:&quot;default&quot;},{&quot;dataType&quot;:&quot;Command&quot;,&quot;sortable&quot;:false,&quot;filterable&quot;:false,&quot;visible&quot;:true,&quot;linkParentType&quot;:&quot;screen&quot;,&quot;linkParentLoadIfEmpty&quot;:false,&quot;command&quot;:&quot;edit|destroy&quot;,&quot;required&quot;:false,&quot;inputType&quot;:&quot;default&quot;}],&quot;toolBarButtons&quot;:[{&quot;type&quot;:&quot;Native&quot;,&quot;title&quot;:&quot;create&quot;}],&quot;details&quot;:[]}" ng-model="RoleGrid.data" class="" style=""></cron-grid>
+				</div> 
+                <!-- OneToOne  end -->
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- OneToOne modal -->
+<div class="modal fade" id="modalRoleGrid">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{'Home.view.Close' | translate}}"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Role</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group list-group-sm row">
+<!-- else of !model.hasCronappFramework() -->
+
+									
+                                    <div data-component="crn-textinput" id="crn-modal-textinput-id" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="textinput-modal-id">Id</label>
+                                                <input type="text" ng-model="RoleGrid.active.id" class="form-control" id="textinput-modal-id" placeholder="Id" mask="" mask-placeholder="" ng-required="true">
+                                        </div>
+                                    </div>
+                             <!-- end if !model.hasCronappFramework() -->
+
+<!-- else of !model.hasCronappFramework() -->
+                             <!-- end if !model.hasCronappFramework() -->
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- OneToOne modal end-->
+
+<div id="meuOvo2"></div>

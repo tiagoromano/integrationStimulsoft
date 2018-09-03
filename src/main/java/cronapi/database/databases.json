@@ -1,0 +1,27 @@
+{
+  "primaryKeyError": [
+    "violation of PRIMARY",
+    "UNIQUE KEY",
+    "Violation of PRIMARY",
+    "Violação da restrição PRIMARY",
+    "duplicate key",
+    "unique constraint",
+    "ORA-00001",
+    "ORA-01400",
+    "Duplicate entry",
+    "DB2 SQL error: SQLCODE: -803",
+    "Unique index or primary key violation"
+  ],
+
+  "foreignKeyError": [
+    "violation of FOREIGN KEY",
+    "REFERENCE constraint",
+    "FOREIGN KEY",
+    "COLUMN REFERENCE constraint",
+    "foreign key constraint",
+    "ORA-02291",
+    "ORA-02292",
+    "DB2 SQL error: SQLCODE: -532",
+    "Referential integrity constraint violation"
+  ]
+}
