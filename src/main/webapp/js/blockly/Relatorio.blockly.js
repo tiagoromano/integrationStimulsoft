@@ -7,6 +7,6 @@ window.blockly.js.blockly.Relatorio = window.blockly.js.blockly.Relatorio || {};
  * Relatorio
  */
 window.blockly.js.blockly.Relatorio.Executar = function() {
-	var item;
-	this.cronapi.util.openReport('reports/novo.report', []);
+
+	this.cronapi.util.openReport('app/tarcisiofeio.report', []);
 }

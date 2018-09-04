@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><blockly formTarget="" resourceType="JS" ruleDescription="Relatorio" ruleName="Relatorio" ruleSynchronous="false" ruleTimeout="" ruleType="I">
-  <metadata scale="1" scrollx="356.9999999999998" scrolly="-2.2737367544323206e-13" target="Anb:u5+^,0vLkL9QIqn5"/>
+  <metadata scale="1" scrollx="357.0000000000002" scrolly="-2.2737367544323206e-13" target="Anb:u5+^,0vLkL9QIqn5"/>
   <block colour="#995ba5" id="Anb:u5+^,0vLkL9QIqn5" origintype="procedures_defreturn" output="false" tooltip="Cria uma função que possui um valor de retorno." type="procedures_defreturn" x="-350" y="130">
     <field name="NAME">Executar</field>
     <comment h="80" pinned="false" w="160">Relatorio</comment>
@@ -11,9 +11,11 @@
         <value name="ARG0">
           <block colour="#487f7f" dependencyby="Anb:u5+^,0vLkL9QIqn5" id="~ovdI[ZeNltUVCFnKu(%" origintype="util_report_list" output="true" type="util_report_list">
             <mutation>
+              <arg name="app/relatorioTeste.jrxml" value="app/relatorioTeste.jrxml"/>
               <arg name="reports/relatorioTeste.jrxml" value="reports/relatorioTeste.jrxml"/>
+              <arg name="app/tarcisiofeio.report" value="app/tarcisiofeio.report"/>
             </mutation>
-            <field name="SELECT">reports/relatorioTeste.jrxml</field>
+            <field name="SELECT">app/tarcisiofeio.report</field>
           </block>
         </value>
       </block>
