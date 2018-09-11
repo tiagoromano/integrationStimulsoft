@@ -8,12 +8,11 @@ import javax.xml.bind.annotation.*;
 
 /**
 * @generated
-*/
-@Embeddable
+*
+**/
 public class RolePK implements Serializable {
 
   /**
-  * UID da classe, necessário na serialização
   * @generated
   */
   private static final long serialVersionUID = 1L;
@@ -21,13 +20,11 @@ public class RolePK implements Serializable {
   /**
    * @generated
    */
-  @Column(name = "id", insertable=true, updatable=true)
-  private java.lang.String id;
+  private java.lang.String id = UUID.randomUUID().toString().toUpperCase();
   
   /**
    * @generated
    */
-  @Column(name = "fk_user", insertable=true, updatable=true)
   private java.lang.String user;
   
   /**

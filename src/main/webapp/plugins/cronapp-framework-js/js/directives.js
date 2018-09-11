@@ -954,15 +954,6 @@
             culture = parts.join('-');
             kendo.culture(culture);
           },
-          generateId: function() {
-            var numbersOnly = '0123456789';
-            var result = Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-            if (numbersOnly.indexOf(result.substr(0,1)) > -1)
-              return this.generateId();
-            return result;
-          },
           generateBlocklyCall: function(blocklyInfo) {
             var call;
             if (blocklyInfo.type == "client")  {
@@ -1000,7 +991,8 @@
             var generateObjTemplate = function(functionToCall, title) {
               var obj = {
                 template: function() {
-                  var buttonId = this.generateId();
+                  debugger;
+                  var buttonId = app.common.generateId();
                   return createTemplateButton(buttonId, functionToCall, title);
                 }.bind(this)
               };
@@ -1071,8 +1063,8 @@
             return buttonCall;
           },
           generateModalSaveOrCancelButtonCall: function(buttonType, functionToCall, datasourceName, modalId, scope) {
-
-            var buttonId = this.generateId();
+            debugger;
+            var buttonId = app.common.generateId();
             var compileTemplateAngular = function(buttonType, functionToCall, datasourceName, modalId) {
               var template;
               if (buttonType == 'save')
@@ -1221,10 +1213,11 @@
 
             function editor(container, opt) {
               $(container).css("position", "relative");
-
+          
               var column = getColumnByField(opt.field);
               var required = isRequired(opt.field) ? "required" : "";
-              var buttonId = this.generateId();
+              debugger;
+              var buttonId = app.common.generateId();
               var $input = $('<input '+required+' name="' + opt.field + '" id="' + buttonId + '"from-grid=true />');
               if (column.inputType == 'dynamicComboBox' || column.inputType == 'comboBox') {
                 var kendoConfig = app.kendoHelper.getConfigCombobox(column.comboboxOptions, scope);
@@ -1248,7 +1241,8 @@
                 $input.appendTo(container).kendoMobileSwitch(kendoConfig, scope);
               }
               else if (column.inputType == 'checkbox' || column.type == 'boolean') {
-                var guid = this.generateId();
+                debugger;
+                var guid = app.common.generateId();
                 $input = $('<input id="'+guid+'" name="' + opt.field + '" class="k-checkbox" type="checkbox" ><label class="k-checkbox-label" for="'+guid+'"></label>');
                 $input.appendTo(container);
               }
@@ -1302,8 +1296,9 @@
             function getCommandForEditButtonDatabase(opt, command) {
               var cmd;
               if (opt.editable == 'popupCustom') {
+                debugger;
                 cmd = {
-                  name: this.generateId(),
+                  name: app.common.generateId(),
                   text: '',
                   iconClass: "k-icon k-i-edit",
                   click: function(e) {
@@ -1381,10 +1376,10 @@
                   }
                 }
                 else if (column.dataType == "Blockly") {
-
+                  debugger;
                   var addColumn = {
                     command: [{
-                      name: this.generateId(),
+                      name: app.common.generateId,
                       text: column.headerText,
                       hidden: !column.visible,
                       click: function(e) {
@@ -2815,10 +2810,8 @@ function parseMaskType(type, $translate) {
   return type;
 }
 
-
-
-app.kendoHelper = {
-  generateId: function() {
+app.common = {
+   generateId: function() {
     var numbersOnly = '0123456789';
     var result = Math.floor((1 + Math.random()) * 0x10000)
         .toString(16)
@@ -2826,7 +2819,10 @@ app.kendoHelper = {
     if (numbersOnly.indexOf(result.substr(0,1)) > -1)
       return this.generateId();
     return result;
-  },
+  }
+};
+
+app.kendoHelper = {
   getSchema: function(dataSource) {
     var parseAttribute = [
       { kendoType: "string", entityType: ["string", "character", "uuid", "guid"] },
@@ -2967,8 +2963,8 @@ app.kendoHelper = {
 
       }
     }
-
-    var datasourceId = this.generateId();
+debugger;
+    var datasourceId = app.common.generateId();
     var datasource = {
       transport: {
         setActiveAndPost: function(e) {

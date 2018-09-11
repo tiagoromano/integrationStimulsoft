@@ -54,7 +54,7 @@ public class Role implements Serializable {
    * return id
    * @generated
    */
-
+  
   public java.lang.String getId(){
     return this.id;
   }
@@ -74,7 +74,7 @@ public class Role implements Serializable {
    * return user
    * @generated
    */
-
+  
   public User getUser(){
     return this.user;
   }

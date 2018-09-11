@@ -433,6 +433,269 @@
           "display": "normal"
         }
       }
+    },
+    {
+      "type": "uml.Class",
+      "name": "Teste",
+      "attributes": [
+        "id:java.lang.String",
+        "fDate:java.util.Date",
+        "fTimeStamp:java.sql.Timestamp",
+        "fInteger:java.lang.Integer",
+        "fLong:java.lang.Long",
+        "fDouble:java.lang.Double",
+        "fBoolean:java.lang.Boolean",
+        "fFloat:float"
+      ],
+      "methods": [],
+      "position": {
+        "x": 583,
+        "y": 156
+      },
+      "size": {
+        "width": 207.984375,
+        "height": 173.1290512084961
+      },
+      "angle": 0,
+      "multitenantContextJsonIgnore": "false",
+      "multitenantContextIgnoreEntities": "",
+      "role": "Auto",
+      "queries": [],
+      "tableName": null,
+      "realName": "",
+      "tableScheme": null,
+      "generateView": "Auto",
+      "isRest": "true",
+      "multitenantContext": "",
+      "restSecurity": null,
+      "restPath": "",
+      "id": "b499cfd8-3c0d-4706-8627-c5bc3d36afeb",
+      "fields": [
+        {
+          "name": "id",
+          "type": "java.lang.String",
+          "dbName": "id",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "UUID.randomUUID().toString().toUpperCase()",
+          "label": "Id",
+          "mask": "",
+          "isPrimaryKey": true,
+          "isUniqueKey": false,
+          "isNullable": false,
+          "pkType": "UUID",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        },
+        {
+          "name": "fDate",
+          "type": "java.util.Date",
+          "dbName": "fDate",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "F Date",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        },
+        {
+          "name": "fTimeStamp",
+          "type": "java.sql.Timestamp",
+          "dbName": "fTimeStamp",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "F Time Stamp",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        },
+        {
+          "name": "fInteger",
+          "type": "java.lang.Integer",
+          "dbName": "fInteger",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "F Integer",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        },
+        {
+          "name": "fLong",
+          "type": "java.lang.Long",
+          "dbName": "fLong",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "F Long",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        },
+        {
+          "name": "fDouble",
+          "type": "java.lang.Double",
+          "dbName": "fDouble",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "F Double",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        },
+        {
+          "name": "fBoolean",
+          "type": "java.lang.Boolean",
+          "dbName": "fBoolean",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "F Boolean",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        },
+        {
+          "name": "fFloat",
+          "type": "float",
+          "dbName": "fFloat",
+          "dbLength": "",
+          "dbPrecision": "",
+          "dbScale": "",
+          "dbDefaultValue": "",
+          "label": "F Float",
+          "mask": "",
+          "isPrimaryKey": false,
+          "isUniqueKey": false,
+          "isNullable": true,
+          "pkType": "",
+          "multitenantContext": "",
+          "jsonIgnore": false,
+          "isTransient": false,
+          "isInsertable": true,
+          "isUpdatable": true,
+          "isEncryption": false,
+          "referencedColumnName": "",
+          "isSearchable": false
+        }
+      ],
+      "runtimeClass": "cronos.widgets.joint.uml.Class",
+      "z": 12,
+      "attrs": {
+        "rect": {
+          "stroke": "yellow",
+          "stroke-width": 2
+        },
+        ".uml-class-name-rect": {
+          "height": 50,
+          "transform": "translate(0,0)"
+        },
+        ".uml-class-attrs-rect": {
+          "height": 190,
+          "transform": "translate(0,50)"
+        },
+        ".uml-class-methods-rect": {
+          "height": 30,
+          "transform": "translate(0,240)"
+        },
+        ".uml-class-name-text": {
+          "fill": "#000",
+          "font-size": 12,
+          "text": "Teste",
+          "font-weight": "bold"
+        },
+        ".uml-class-attrs-text": {
+          "font-size": 11,
+          "text": "id\nfDate\nfTimeStamp\nfInteger\nfLong\nfDouble\nfBoolean\nfFloat\n"
+        },
+        ".uml-class-attrs-value": {
+          "ref-x": 94.765625,
+          "font-size": 11,
+          "text": "java.lang.String\njava.util.Date\njava.sql.Timestamp\njava.lang.Integer\njava.lang.Long\njava.lang.Double\njava.lang.Boolean\nfloat\n"
+        },
+        ".uml-class-methods-text": {
+          "fill": "#0066FF",
+          "font-size": 11,
+          "text": ""
+        }
+      }
     }
   ],
   "selectedGroup": "1d7f906f-a526-482d-aaf4-08d227ae8c18",
@@ -450,7 +713,8 @@
       "id": "1d7f906f-a526-482d-aaf4-08d227ae8c18",
       "cells": [
         "d2e50f97-0b9e-4037-94ba-af64568af247",
-        "1df87f56-c5ba-47f5-8e68-82931f49b989"
+        "1df87f56-c5ba-47f5-8e68-82931f49b989",
+        "b499cfd8-3c0d-4706-8627-c5bc3d36afeb"
       ]
     }
   ]
