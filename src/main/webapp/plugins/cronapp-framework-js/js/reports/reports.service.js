@@ -86,16 +86,17 @@
       setTimeout(include, 200);
     };
 
-    this.initializeStimulsoft = function(language, json) {
+    this.initializeStimulsoft = function(language) {
       if (!Stimulsoft.Base.StiLicense.Key) {
-        var localization = stimulsoftHelper.getLocalization(language);
+        stimulsoftHelper.setLanguage(language);
+        var localization = stimulsoftHelper.getLocalization();
         Stimulsoft.Base.Localization.StiLocalization.loadLocalization(localization.xml);
         Stimulsoft.Base.Localization.StiLocalization.cultureName = localization.cultureName;
         Stimulsoft.Base.StiLicense.Key = stimulsoftHelper.getKey();
       }
     }
 
-    this.openStimulsoftReport = function(json) {
+    this.openStimulsoftReport = function(json, parameters) {
       var context = $('#reportViewContext');
       if(!context.get(0)) {
         console.log('include[#reportViewContext]');
@@ -103,7 +104,7 @@
         $compile(body)(scope);
       }
       
-      this.initializeStimulsoft($translate.use(), json);
+      
       var h = parseInt($(window).height());
       
       var options = new Stimulsoft.Viewer.StiViewerOptions();
@@ -113,6 +114,23 @@
       var viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
       var report = new Stimulsoft.Report.StiReport();
       report.load(json);
+      
+      if (parameters) {
+        var stimulsoftParams = this.getStimulsoftParams(json);
+        parameters.forEach(function(p) {
+          stimulsoftParams.forEach(function(sp) {
+             debugger;
+             for (var i = 0; i<sp.fieldParams.length; i++) {
+                if (sp.fieldParams[i].param == p.name) {
+                  sp.fieldParams[i]["value"] = p.value;
+                  break;
+                }
+             }
+          });
+        });
+        stimulsoftHelper.setParamsInFilter(report.dictionary.dataSources, stimulsoftParams);
+      }
+      
       viewer.report = report;
       
       var include = setInterval(function() {
@@ -203,25 +221,75 @@
       return hasWithOutValue;
     };
 
+    this.getStimulsoftParams = function(json) {
+      
+      var report = new Stimulsoft.Report.StiReport();
+      report.load(json);
+      
+      var datasourcesToCheck = [];
+      if (report.pages && report.pages.list && report.pages.list.length > 0) {
+        //Itera as paginas e descobre as bands e datasources associados
+        var pages = report.pages.toList();
+        pages.forEach(function (p) {
+          var components = p.components.toList();
+          components.forEach(function(c) {
+            datasourcesToCheck.push(c.dataSourceName);
+          });
+        });
+      }
+  
+      var datasourcesParam = [];
+      datasourcesToCheck.forEach(function(toCheckName) {
+        var datasource = stimulsoftHelper.findDatasourceByName(report.dictionary.dataSources, toCheckName);
+        if (datasource && stimulsoftHelper.dataSourceHasParam(datasource)) {
+          datasourcesParam.push({
+            name: datasource.name,
+            fieldParams: stimulsoftHelper.getParamsFromFilter(datasource)
+          });
+        }
+      });
+      
+      return datasourcesParam;
+  
+    };
+
     this.openReport = function(reportName, params) {
       this.getReport(reportName).then(function(result) {
         if(result && result.data) {
-          // Abrir direto o relatorio , caso não haja parametros
-          if(result.data.parameters.length == 0 || (result.data.parameters.length == 1 && result.data.parameters[0].name == 'DATA_LIMIT')) {
+          if (result.data.reportName.endsWith('.report')) {
             
-            if (result.data.reportName.endsWith('.report')) {
-              this.getContentAsString(result.data).then(
-                function(content) {
-                  debugger;
+            this.initializeStimulsoft($translate.use());
+            
+            this.getContentAsString(result.data).then(function(content) {
+                
+                debugger;
+                var paramsStimulsoft = this.getStimulsoftParams(content.data);
+                if (paramsStimulsoft.length > 0) {
+                  //Compatibilizar os tipos para o relatório antigo
+                  result.data.parameters = stimulsoftHelper.parseToGroupedParam(paramsStimulsoft);
+                  result.data.contentData = content.data;
+                  
+                  if (params)
+                    result.data.parameters = this.mergeParam(result.data.parameters, params);
+                  if (this.hasParameterWithOutValue(result.data.parameters)) {
+                    this.showParameters(JSON.parse(JSON.stringify(result.data)));
+                  } else {
+                    this.openStimulsoftReport(content.data, result.data.parameters);
+                  }
+                }
+                else {
                   this.openStimulsoftReport(content.data);
-                }.bind(this),
-                function(data) {
-                  var message = cronapi.internal.getErrorMessage(data, data.statusText);
-                  scope.Notification.error(message);
-                }.bind(this)
-              );
-            }
-            else {
+                }
+              }.bind(this),
+              function(data) {
+                var message = cronapi.internal.getErrorMessage(data, data.statusText);
+                scope.Notification.error(message);
+              }.bind(this)
+            );
+          }
+          else {
+            // Abrir direto o relatorio , caso não haja parametros
+            if(result.data.parameters.length == 0 || (result.data.parameters.length == 1 && result.data.parameters[0].name == 'DATA_LIMIT')) {
               this.getPDFAsFile(result.data.reportName).then(function(obj) {
                 this.openURLContent(obj.data);
               }.bind(this), function(data) {
@@ -229,18 +297,16 @@
                 scope.Notification.error(message);
               }.bind(this));
             }
-            
-            
-          }
-          else {
-            if (params)
-              result.data.parameters = this.mergeParam(result.data.parameters, params);
-            if (this.hasParameterWithOutValue(result.data.parameters)) {
-              this.showParameters(JSON.parse(JSON.stringify(result.data)));
-            } else {
-              this.getPDFAsFile(result.data).then(function(obj) {
-                this.openURLContent(obj.data);
-              }.bind(this));
+            else {
+              if (params)
+                result.data.parameters = this.mergeParam(result.data.parameters, params);
+              if (this.hasParameterWithOutValue(result.data.parameters)) {
+                this.showParameters(JSON.parse(JSON.stringify(result.data)));
+              } else {
+                this.getPDFAsFile(result.data).then(function(obj) {
+                  this.openURLContent(obj.data);
+                }.bind(this));
+              }
             }
           }
         }

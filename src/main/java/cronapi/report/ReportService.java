@@ -29,6 +29,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import cronapi.rest.DownloadREST;
 import cronapp.reports.PrintDesign;
 import cronapp.reports.ReportExport;
@@ -82,6 +85,11 @@ public class ReportService {
 							reportResult.addParameter(parameter);
 						});
 			}
+		// 	else if (reportName.endsWith(".report")) {
+		// 	  String content = getContentReport(reportName);
+		// 	  JsonParser parser = new JsonParser();
+  //       JsonObject json = parser.parse(content).getAsJsonObject();
+		// 	}
 		} catch (JRException e) {
 			log.error("Problems to make JasperDesign object.");
 			throw new RuntimeException(e);

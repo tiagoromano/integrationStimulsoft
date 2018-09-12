@@ -8,15 +8,52 @@ var StimulsoftHelper = function() {
       "knXAC/rbix/zQUyp5DMDPakdqauU4sp5QgzXFjOoqC3U7jhakl3ul2Wlfg6Wva4kqwJ7lh7pBCNCds/UpzSDoLOeiP" +
       "xJMDFzp+7K4X30oJshL9WPFz3B6BONCCVQWiwVvvuos+MppFgv7X8/26ZrWNfhl9Gf48/6ohr94pQVmcd4OQvj3vjE" +
       "8ujdA1wiPoKPgMDYx8qPVwbaib1Zk4T+D1pZ";
+  this._regexForParam = /[a-zA-Z]*[0-9]*\s+[a-zA-Z]*\s+:[a-zA-Z]*[0-9]*/gim;
+  this._currentLanguage;
+  
+  this._ptBrValue = 'pt_br';
+  
+  this._groupedType = {
+    STRING : { types: ["string", "character", "uuid", "guid"] },
+    DATE: { types: ["date", "datetime", "time"] },
+    INTEGER: { types: ["integer", "long", "int", "bigdecimal", "int32", "int64"] },
+    DOUBLE: { types: ["double", "float", "decimal", "single"] },
+    BOOLEAN: { types: ["boolean"] }
+  };
 };
 
-StimulsoftHelper.prototype.getLocalization = function(key) {
-  if (key == 'pt_br') {
+StimulsoftHelper.prototype.setLanguage = function(language) {
+  this._currentLanguage = language;
+};
+
+StimulsoftHelper.prototype.getLocalization = function() {
+  if (this._currentLanguage == this._ptBrValue) {
     return this.getLocalizationInfo('Portuguese (Brazil)', this._ptBr);
   }
   else {
     return this.getLocalizationInfo('English', this._enUs);
   }
+};
+
+//Função para retornar parametros da mesma forma que a tela de parametros espera (com os mesmos tipos)
+StimulsoftHelper.prototype.parseToGroupedParam = function(datasourcesParam) {
+  var parameters = [];
+  datasourcesParam.forEach(function(dsp) {
+    var fieldParams = dsp.fieldParams.toArray();
+    fieldParams.forEach(function(fp) {
+      for (var type in this._groupedType) {
+        if (this._groupedType[type].types.contains(fp.type.toLowerCase())) {
+          parameters.push({
+            name: fp.param,
+            type: type,
+            value: ''
+          });
+          break;
+        }
+      }
+    }.bind(this));
+  }.bind(this));
+  return parameters;  
 };
 
 StimulsoftHelper.prototype.getLocalizationInfo = function (cultureName, xml) {
@@ -29,4 +66,119 @@ StimulsoftHelper.prototype.getLocalizationInfo = function (cultureName, xml) {
 StimulsoftHelper.prototype.getKey = function() {
   return this._key;
 };
+
+StimulsoftHelper.prototype.nomenclaturePattern = function(value) {
+  if (value)
+      value = value.replaceAll(".","_").replaceAll(" ", "_");
+    return value;
+};
+
+StimulsoftHelper.prototype.findDatasourceByName = function(dataSources, name) {
+
+  var datasource = null;
+
+  for (var i = 0; i < dataSources.list.length; i++) {
+    var ds = dataSources.list[i];
+    if (ds.name == name) {
+      datasource = ds;
+      break;
+    }
+  }
+
+  return datasource;
+};
+
+StimulsoftHelper.prototype.getDateODATA = function(date) {
+  try {
+    let groups = date.split(' ');
+    let dayMonthYear = groups[0].split('/');
+    let hourMinSec = groups[1].length > 0 ? groups[1] : '00:00:00';
+
+    if (this._currentLanguage == this._ptBrValue)
+      return dayMonthYear[2] + '-' + dayMonthYear[1] + '-' + dayMonthYear[0] + 'T' + hourMinSec;
+    return dayMonthYear[2] + '-' +  dayMonthYear[0] + '-' + dayMonthYear[1] + 'T' + hourMinSec;
+  }
+  catch(e) {
+    //Erro ao setar parametro, retorna vazio
+    //TODO: Notificar parametro preenchido incorretamente
+    return '';
+  }
+};
+
+StimulsoftHelper.prototype.adjustParamODATA = function(param) {
+  if (param.type == 'String')
+    return "'" + param.value +"'";
+  else if (param.type.startsWith('Date'))
+    return "datetime'"+this.getDateODATA(param.value)+"'";
+  return param.value;
+};
+
+StimulsoftHelper.prototype.resetRegex = function() {
+  this._regexForParam.lastIndex = -1;
+};
+
+StimulsoftHelper.prototype.dataSourceHasParam = function(datasource) {
+  this.resetRegex();
+  return this._regexForParam.exec(datasource.sqlCommand) != null;
+};
+
+StimulsoftHelper.prototype.getParamsFromFilter = function(datasource) {
+  this.resetRegex();
+  var value = datasource.sqlCommand;
+  var result = [];
+
+  var ocurr = null;
+  while ( (ocurr = this._regexForParam.exec(value)) !== null) {
+    var groupResult = ocurr[0].replace(/\s\s+/g, ' ').split(' ');
+    var column = this.getColumnByName(datasource, groupResult[0]);
+    //TODO: quando a coluna não existir notificar que coluna não existe
+    var type = column ? column.type.getStiTypeName() : 'String';
+    result.push({
+      field: groupResult[0],
+      param: groupResult[2],
+      type: type,
+    });
+  }
+  return result;
+};
+
+StimulsoftHelper.prototype.setParamsInFilter = function(dataSources, datasourcesParam) {
+  datasourcesParam.forEach(function(datasourceP) {
+    var datasource = this.findDatasourceByName(dataSources, datasourceP.name);
+    datasource.originalSqlCommand = datasource.sqlCommand;
+    datasourceP.fieldParams.forEach(function(fp) {
+      var paramValue = this.adjustParamODATA(fp);
+      var regex = eval('/' + fp.param + '\\b/gim');
+      datasource.sqlCommand = datasource.sqlCommand.replaceAll(regex, paramValue);
+    }.bind(this));
+  }.bind(this));
+};
+
+StimulsoftHelper.prototype.restoreOriginalFilter = function(dataSources, datasourcesParam) {
+  datasourcesParam.forEach(function(datasourceP) {
+    var datasource = this.findDatasourceByName(dataSources, datasourceP.name);
+    if (datasource.originalSqlCommand)
+      datasource.sqlCommand = datasource.originalSqlCommand;
+  });
+};
+
+StimulsoftHelper.prototype.getColumnByName = function(datasource, name) {
+  var columns = datasource.columns.toList();
+  var column = null;
+  for (var i = 0; i < columns.length; i++) {
+    if (columns[i].name == name) {
+      column = columns[i];
+      break;
+    }
+  }
+  return column;
+};
+
+StimulsoftHelper.prototype.getCustomIdFromFilter = function(datasource) {
+  var indexOf = datasource.sqlCommand.indexOf("?")
+  if (indexOf > -1)
+    return datasource.sqlCommand.substr(0, indexOf);
+  return datasource.sqlCommand;
+};
+
 var stimulsoftHelper = new StimulsoftHelper();

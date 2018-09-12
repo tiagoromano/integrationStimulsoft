@@ -65,7 +65,7 @@
     };
 
 
-    var grp = report.reportName.match(/\/(.*?)(.*?)\.jrxml/);
+    var grp = report.reportName.match(/\/(.*?)(.*?)(\.jrxml|\.report)/);
     $scope.report = report;
     $scope.report.name = grp[2];
     $scope.htmlParameters = htmlParameters;
@@ -92,7 +92,10 @@
     }
 
     $scope.onPrint = function() {
-      ReportService.getPDFAsFile($scope.report).then(openPDFAsFile);
+      if ($scope.report.reportName.endsWith('.report'))
+        ReportService.openStimulsoftReport($scope.report.contentData, $scope.report.parameters);
+      else
+        ReportService.getPDFAsFile($scope.report).then(openPDFAsFile);
     };
 
     $scope.onCancel = function() {
